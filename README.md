@@ -2,11 +2,13 @@
 Criando banco de dados em C#
 1 Instalar os Pacotes Necessários:
 No Gerenciador de Pacotes NuGet, adicione os seguintes pacotes ao seu projeto:
-
-PM> Install-Package Microsoft.EntityFrameworkCore
-PM> Install-Package Microsoft.EntityFrameworkCore.SqlServer
-PM> Install-Package Microsoft.EntityFrameworkCore.Tools
-
+<pre>
+    <code>
+        PM> Install-Package Microsoft.EntityFrameworkCore
+        PM> Install-Package Microsoft.EntityFrameworkCore.SqlServer
+        PM> Install-Package Microsoft.EntityFrameworkCore.Tools
+    </code>
+</pre>
 2 Criar o Modelo (Classes):
 Crie classes que representem as tabelas do banco de dados. Por exemplo:
 <pre>
