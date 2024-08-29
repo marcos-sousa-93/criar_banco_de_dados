@@ -12,9 +12,15 @@ Crie classes que representem as tabelas do banco de dados. Por exemplo:
 
 public class Pessoa
 {
-    public int Id { get; set; }
-    public string Nome { get; set; }
-    public string Email { get; set; }
+    public int Id {
+        get; set; 
+    }
+    public string Nome {
+        get; set; 
+    }
+    public string Email {
+        get; set; 
+    }
 }
 ===================================================================================================================================
 3 Criar o Contexto do Banco de Dados:
@@ -22,7 +28,9 @@ Crie uma classe que herda de DbContext e define as DbSet para as entidades:
 
 public class CadastroPessoaContext : DbContext
 {
-    public DbSet<Pessoa> Pessoas { get; set; }
+    public DbSet<Pessoa> Pessoas {
+        get; set; 
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
