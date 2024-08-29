@@ -9,7 +9,8 @@ PM> Install-Package Microsoft.EntityFrameworkCore.Tools
 
 2 Criar o Modelo (Classes):
 Crie classes que representem as tabelas do banco de dados. Por exemplo:
-
+<table>
+    <tr>
 public class Pessoa
 {
     public int Id {
@@ -22,6 +23,8 @@ public class Pessoa
         get; set; 
     }
 }
+    </tr>
+</table>
 ===================================================================================================================================
 3 Criar o Contexto do Banco de Dados:
 Crie uma classe que herda de DbContext e define as DbSet para as entidades:
