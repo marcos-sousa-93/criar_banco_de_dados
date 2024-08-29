@@ -39,3 +39,98 @@ PM> Add-Migration InitialCreate
 Aplique a migration para criar o banco de dados:
 
 PM> Update-Database
+
+6 Adicionar Dados ao Banco de Dados
+Agora que tudo está configurado, você pode adicionar dados ao banco de dados.
+Passo 1: Criar uma Instância do Contexto
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        using (var context = new CadastroPessoaContext())
+        {
+            // Agora você pode adicionar dados ao banco de dados usando o contexto
+        }
+    }
+}
+
+Passo 2: Criar uma Instância do Objeto a Ser Adicionado
+Dentro do using (var context = new CadastroPessoaContext()) { } colocar:
+
+var novaPessoa = new Pessoa
+{
+    Nome = "Maria Silva",
+    Email = "maria.silva@example.com"
+};
+
+exemplo:
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        using (var context = new CadastroPessoaContext())
+        {
+            var novaPessoa = new Pessoa
+            {
+                Nome = "Maria Silva",
+                Email = "maria.silva@example.com"
+            };
+        }
+    }
+}
+
+Passo 3: Adicionar o Objeto ao Contexto
+
+context.Pessoas.Add(novaPessoa);
+
+Passo 4: Salvar as Mudanças no Banco de Dados
+
+context.SaveChanges();
+
+Aqui está o código completo:
+
+using System;
+using Microsoft.EntityFrameworkCore;
+
+namespace CadastroPessoaBD
+{
+    public class Pessoa
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Email { get; set; }
+    }
+
+    public class CadastroPessoaContext : DbContext
+    {
+        public DbSet<Pessoa> Pessoas { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CadastroPessoaDB;Trusted_Connection=True;");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (var context = new CadastroPessoaContext())
+            {
+                var novaPessoa = new Pessoa
+                {
+                    Nome = "Maria Silva",
+                    Email = "maria.silva@example.com"
+                };
+
+                context.Pessoas.Add(novaPessoa);
+                context.SaveChanges();
+
+                Console.WriteLine("Dados inseridos com sucesso!");
+            }
+        }
+    }
+}
+
