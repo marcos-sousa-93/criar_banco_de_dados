@@ -2,16 +2,19 @@
 ## Criando banco de dados em C#
 # 1 Instalar os Pacotes Necessários:
 ## No Gerenciador de Pacotes NuGet, adicione os seguintes pacotes ao seu projeto:
+
 <pre>
     <code>
         <h3>Install-Package Microsoft.EntityFrameworkCore</h3>
     </code>
 </pre>
+
 <pre>
     <code>
         <h3>Install-Package Microsoft.EntityFrameworkCore.SqlServer</h3>
     </code>
 </pre>
+
 <pre>
     <code>
         <h3>Install-Package Microsoft.EntityFrameworkCore.Tools</h3>
@@ -20,6 +23,7 @@
 
 # 2 Criar o Modelo (Classes):
 ## Crie classes Pessoa que representem as tabelas do banco de dados. Por exemplo:
+
 <pre>
     <code>
         <h3>
@@ -34,6 +38,7 @@ public class Pessoa {
 
 # 3 Criar o Contexto do Banco de Dados:
 ## Crie uma classe CadastroPessoaContext que herda de DbContext e define as DbSet para as entidades:
+
 <pre>
     <code>
         <h3>
@@ -49,6 +54,7 @@ public class CadastroPessoaContext : DbContext {
 
 # 4 Criar as Migrations:
 ## No Gerenciador de Pacotes NuGet, rode o comando para criar a migration inicial:
+
 <pre>
     <code>
         <h3>
@@ -59,6 +65,7 @@ Add-Migration InitialCreate
 
 # 5 Atualizar o Banco de Dados:
 ## Aplique a migration para criar o banco de dados:
+
 <pre>
     <code>
         <h3>
@@ -70,6 +77,7 @@ Update-Database
 # 6 Adicionar Dados ao Banco de Dados
 ## Agora que tudo está configurado, você pode adicionar dados ao banco de dados.
 ## Passo 1: Criar uma Instância do Contexto
+
 <pre>
     <code>
         <h3>
@@ -86,6 +94,7 @@ class Program {
 
 # Passo 2: Criar uma Instância do Objeto a Ser Adicionado
 ## Dentro do using (var context = new CadastroPessoaContext()) { } colocar:
+
 <pre>
     <code>
         <h3>
@@ -98,6 +107,7 @@ var novaPessoa = new Pessoa {
 </pre>
 
 ## exemplo:
+
 <pre>
     <code>
         <h3>
@@ -116,6 +126,7 @@ class Program {
 </pre>
 
 # Passo 3: Adicionar o Objeto ao Contexto
+
 <pre>
     <code>
         <h3>
@@ -125,6 +136,7 @@ context.Pessoas.Add(novaPessoa);
 </pre>
 
 # Passo 4: Salvar as Mudanças no Banco de Dados
+
 <pre>
     <code>
         <h3>
@@ -134,6 +146,7 @@ context.SaveChanges();
 </pre>
 
 ## Aqui está o código:
+
 <pre>
     <code>
         <h3>
@@ -158,6 +171,7 @@ class Program {
 ## Agora, vamos recuperar os dados armazenados no banco de dados e exibi-los no console.
 # Passo 1: Criar uma Instância do Contexto
 ## Primeiro, você precisa criar uma instância do contexto para interagir com o banco de dados:
+
 <pre>
     <code>
         <h3>
@@ -170,6 +184,7 @@ using (var context = new CadastroPessoaContext()) {
 
 # Passo 2: Recuperar os Dados Usando LINQ
 ## Use o LINQ (Language Integrated Query) para consultar os dados da tabela Pessoas. Por exemplo, para buscar todos os registros:
+
 <pre>
     <code>
         <h3>
@@ -180,6 +195,7 @@ var pessoas = context.Pessoas.ToList();
 
 # Passo 3: Exibir os Dados no Console
 ## Itere sobre a lista de pessoas e exiba as informações no console:
+
 <pre>
     <code>
         <h3>
@@ -213,6 +229,7 @@ class Program {
 ## Console.WriteLine: Exibe as propriedades de cada objeto Pessoa no console.
 # Dicas Extras
 ## Filtragem de Dados: Se você quiser filtrar os dados, pode usar o método Where. Exemplo:
+
 <pre>
     <code>
         <h3>
@@ -222,6 +239,7 @@ var pessoas = context.Pessoas.Where(p => p.Nome.Contains("Maria")).ToList();
 </pre>
 
 ## Ordenação: Para ordenar os resultados, use o OrderBy:
+
 <Pre>
     <code>
         <h3>
@@ -240,6 +258,7 @@ var pessoas = context.Pessoas.OrderBy(p => p.Nome).ToList();
 ## Primeiro, você precisa buscar o registro que deseja atualizar. Isso pode ser feito utilizando o método Find ou uma consulta LINQ para localizar o registro.
 ## Por exemplo, vamos supor que você queira corrigir o nome de uma pessoa na tabela Pessoas.
 # Passo 1: Criar uma Instância do Contexto
+
 <pre>
     <code>
         <h3>
@@ -252,6 +271,7 @@ using (var context = new CadastroPessoaContext()) {
 
 # Passo 2: Buscar o Registro Específico
 ## Você pode buscar o registro pelo ID ou por outra propriedade. Exemplo buscando pelo Id:
+
 <pre>
     <code>
         <h3>
@@ -261,6 +281,7 @@ var pessoa = context.Pessoas.Find(1); // Suponha que 1 é o ID do registro a ser
 </pre>
 
 ## Ou, se você quiser buscar por outro campo, como o nome:
+
 <pre>
     <code>
         <h3>
@@ -271,6 +292,7 @@ var pessoa = context.Pessoas.FirstOrDefault(p => p.Nome == "Nome Incorreto");
 
 # Passo 3: Verificar se o Registro Existe
 ## Sempre verifique se o registro foi encontrado antes de tentar atualizá-lo:
+
 <pre>
     <code>
         <h3>
@@ -285,6 +307,7 @@ if (pessoa != null) {
 
 # 3. Atualizar o Registro
 ## Uma vez que você tenha o registro, pode modificar as propriedades que precisam ser corrigidas. Por exemplo, para corrigir o nome:
+
 <pre>
     <code>
         <h3>
@@ -295,6 +318,7 @@ pessoa.Nome = "Nome Corrigido";
 
 # 4. Salvar as Alterações no Banco de Dados
 ## Depois de alterar os dados, você precisa salvar as alterações no banco de dados:
+
 <pre>
     <code>
         <h3>
@@ -304,6 +328,7 @@ context.SaveChanges();
 </pre>
 
 #3 Aqui está o código completo para atualizar um registro:
+
 <pre>
     <code>
         <h3>
@@ -334,7 +359,8 @@ class Program {
 
 ## Recuperar o Registro a Ser Excluído
 ## Primeiro, você precisa buscar o registro (usuário) que deseja excluir. Isso pode ser feito utilizando o método Find ou uma consulta LINQ * para localizar o registro específico.
-# Passo 1: Criar uma Instância do Contexto
+# Passo 1: Criar uma Instância do Contexto.
+
 <pre>
     <Code>
         <h3>
@@ -347,6 +373,7 @@ using (var context = new CadastroPessoaContext()) {
 
 # Passo 2: Buscar o Registro Específico
 ## Você pode buscar o registro pelo ID ou por outro critério. Exemplo buscando pelo Id:
+
 <pre>
     <code>
         <h3>
@@ -356,6 +383,7 @@ var pessoa = context.Pessoas.Find(1); // Suponha que 1 é o ID do usuário a ser
 </pre>
 
 ## Ou, se você quiser buscar por outro campo, como o nome:
+
 <pre>
     <code>
         <h3>
@@ -366,6 +394,7 @@ var pessoa = context.Pessoas.FirstOrDefault(p => p.Nome == "Maria Silva");
 
 # Passo 3: Verificar se o Registro Existe
 ## Antes de tentar excluir o registro, verifique se ele foi encontrado:
+
 <pre>
     <code>
         <h3>
@@ -380,6 +409,7 @@ if (pessoa != null) {
 
 # Excluir o Registro
 ## Se o registro foi encontrado, você pode excluí-lo usando o método Remove:
+
 <pre>
     <code>
         <h3>
@@ -390,6 +420,7 @@ context.Pessoas.Remove(pessoa);
 
 # Salvar as Alterações no Banco de Dados
 ## Após remover o registro, você deve salvar as alterações para que a exclusão seja refletida no banco de dados:
+
 <pre>
     <code>
         <h3>
@@ -399,6 +430,7 @@ context.Pessoas.Remove(pessoa);
 </pre>
 
 ## Aqui está o código completo para excluir um registro:
+
 <pre>
     <code>
         <h3>
